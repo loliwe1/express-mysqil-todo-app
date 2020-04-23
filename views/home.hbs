@@ -1,0 +1,28 @@
+<ul>
+  {{#if todos.length}}
+    {{#each todos}}
+      <li class="todo">
+        <form action="/executed" method="POST">
+          <label>
+            {{#if executed}}
+              <input type="checkbox" checked name="executed">
+              <span class="completed">{{title}}</span>
+            {{else}}
+              <input type="checkbox" name="executed">
+              <span class="green-text darken-4 text">{{title}}</span>
+            {{/if}}
+            <input  type="hidden" value={{id}} name="id">
+            <div>
+              <button class="waves-effect waves-light btn-small" type="submit">Save</button>
+              <button class="waves-effect red lighten-2 btn-small" type="submit" name="delete" value="true">Delete</button>
+            </div>
+          </label>
+        </form>
+      </li>
+    {{/each}}
+  {{else}}
+    <a href="/create">
+      <h2>Create a to-do list</h2>
+    </a>
+  {{/if}}
+</ul>
